@@ -1,12 +1,12 @@
 #Imports
-from Product import PhysicalProduct,DigitalProduct
+from Product import Product, PhysicalProduct,DigitalProduct, Supplier
 import json,os
 
 #Inventory Class
 class Inventory:
     #Initializing inventory as a list
     def __init__(self):
-        self.__inventory = []
+        self.__inventory: list[Product] = []
 
     #Checks if product ID already exists when adding product to inventory, returns boolean value
     def _exists(self,product_id):
@@ -21,9 +21,17 @@ class Inventory:
            self.__inventory.append(product_to_add)
            return True
 
+    def remove_product(self, id_to_remove):
+        if not self._exists(id_to_remove):
+            print("Product does not exist, unable to remove product.")
+        else:
+            self.__inventory = [item for item in self.__inventory if item.itemid != id_to_remove]
+            print("Product removed successfully.")
+
     #Displays all product Objects in the inventory by printing them to terminal
     def display_all(self):
         for item in self.__inventory:
+            print("\n----------------------------")
             print(f"{item}\n")
 
     #Update stock for particular product
@@ -40,16 +48,16 @@ class Inventory:
         print("Product Not Found")
 
     #Searches for product by ID
-    def search_product(self,searchid):
+    def find_product(self,searchid):
         if len(self.__inventory) == 0:
                 print("Your inventory is empty, unable to search for products.")
                 return
         for product in self.__inventory:
             if searchid == product.itemid:
                 if isinstance(product,PhysicalProduct):
-                    print(f"{product.display_information()}\n{product.get_fulfilment_info()}\n{product.calculate_shipping_cost()}")
+                    print(f"{product.display_information()}\n----------------------------\n{product.get_fulfilment_info()}\n{product.calculate_shipping_cost()}")
                 elif isinstance(product,DigitalProduct):
-                   print(f"{product.display_information()}\n{product.get_fulfilment_info()}")
+                   print(f"{product.display_information()}\n----------------------------\n{product.get_fulfilment_info()}")
                 return
         print("Unable to find product, ensure that you have entered product ID in the correct format.")
                 
@@ -65,20 +73,27 @@ class Inventory:
                 json.dump(data, file, indent = 4)
         else:
             print("You have no products in your inventory, saved anyways...")
+            for item in self.__inventory:
+                data.append(item.to_dict())
+            with open("inventory.json", "w") as file:
+                json.dump(data, file, indent = 4)
             
     #Method to load inventory from inventory.json file if exists
     def load_inventory(self):
         self.__inventory = []
+
+
         try:
             file_path = "inventory.json"
             if os.path.isfile(file_path):
                 with open('inventory.json', 'r') as file:
                     data = json.load(file)
                     for i in data:
+                        supplier = Supplier(supplier_id=i["supplierid"],name=i["name"],contact_email=i["contactinfo"])
                         if i["producttype"] == "physical":
-                            self.__inventory.append(PhysicalProduct(i["name"], i["id"], i["price"], i["stock"], i["weight"], i["producttype"]))
+                            self.__inventory.append(PhysicalProduct(i["name"], i["id"], i["price"], i["stock"], supplier, i["weight"], i["producttype"]))
                         elif i["producttype"] == "digital":
-                            self.__inventory.append(DigitalProduct(i["name"], i["id"], i["price"], i["stock"], i["downloadsize"], i["producttype"]))
+                            self.__inventory.append(DigitalProduct(i["name"], i["id"], i["price"], i["stock"], supplier, i["downloadsize"], i["producttype"]))
                     print("inventory.json found and loaded successfully.")
             else:
                 print("inventory.json not found, no inventory records loaded.")
