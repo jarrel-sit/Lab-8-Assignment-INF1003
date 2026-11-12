@@ -46,13 +46,17 @@ ebook = DigitalProduct("E-Book", "P02", 15.0, 30, supplier1, 500.57, "digital")
 order1 = Orders("Order1")
 order2 = Orders("Order2")
 
+#Test Composition
 #Order 1
+print("Order 1, Before Removing Order Line:")
 order1.add_order_line(book, 5)
 order1.add_order_line(ebook,2)
 order1.calculate_total()
+print("\nAfter Removing Order Line:")
 order1.remove_order_line(book,5)
 order1.calculate_total()
 
 #Order 2
+print("\nOrder 2, Adding same product from Order 1")
 order2.add_order_line(book,3)
 order2.calculate_total()

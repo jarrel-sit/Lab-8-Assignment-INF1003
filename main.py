@@ -1,5 +1,5 @@
 #Importing of classes from other files
-from Product import PhysicalProduct,DigitalProduct, Supplier
+from Product import Product,PhysicalProduct,DigitalProduct, Supplier
 from Inventory import Inventory
 
 #Menu Display and User Input    
@@ -14,6 +14,7 @@ def menu():
                     print('Inventory is empty!')
                 else:
                     inventory.display_all()
+
             #Runs add product method
             case "2":
                 while True:
@@ -37,7 +38,8 @@ def menu():
                             raise ValueError
                     except ValueError:
                         print("Invalid format, please key in again")
-                        
+
+            #Runs remove product method              
             case "3":
                 itemid = input('ID: ')
                 inventory.remove_product(itemid)
@@ -45,7 +47,8 @@ def menu():
             #Runs update stock method
             case "4":
                 updateid = input("\nPlease enter the Product ID of the product that you want to update the stock for.\n")
-                inventory.update_stock(updateid)
+                newquantity = int(input("Please enter the new quantity of the product you want to update the stock for."))
+                inventory.update_product_stock(updateid, newquantity)
             #Runs search by ID method 
             case "5":
                 searchid = input("\nPlease enter the Product ID of the product you are looking for.\n")
@@ -68,3 +71,13 @@ if __name__ == "__main__":
     inventory = Inventory()
     inventory.load_inventory()
     menu()
+
+# #Test Substitutability
+# book = PhysicalProduct("Book", "P01", 50.0, 20, supplier1, 20.5, "physical")
+# ebook = DigitalProduct("E-Book", "P02", 15.0, 30, supplier1, 500.57, "digital")
+# #Test function for substitutability
+# def show_product_details(product:Product) -> None:
+#     product.display_information()
+#     print(product.get_fulfilment_info())
+
+# show_product_details(ebook)

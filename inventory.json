@@ -2,23 +2,12 @@
     {
         "id": "P01",
         "name": "Laptop",
-        "price": 4.0,
-        "stock": 3,
-        "weight": 30.0,
+        "price": 3000.5,
+        "stock": 4,
+        "weight": 2000.0,
         "producttype": "physical",
-        "supplierid": "Laptop",
-        "suppliername": "Laptop",
-        "contactinfo": "jarrel@gmail.com"
-    },
-    {
-        "id": "P02",
-        "name": "Manual",
-        "price": 5.0,
-        "stock": 2,
-        "downloadsize": 30.0,
-        "producttype": "digital",
         "supplierid": "S1",
-        "suppliername": "Manual",
+        "suppliername": "Jarrel",
         "contactinfo": "jarrel@gmail.com"
     }
 ]
