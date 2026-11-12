@@ -2,33 +2,23 @@
     {
         "id": "P01",
         "name": "Laptop",
-        "price": 2000.0,
-        "stock": 50,
-        "weight": 3000.0,
-        "producttype": "physical"
+        "price": 4.0,
+        "stock": 3,
+        "weight": 30.0,
+        "producttype": "physical",
+        "supplierid": "Laptop",
+        "suppliername": "Laptop",
+        "contactinfo": "jarrel@gmail.com"
     },
     {
         "id": "P02",
-        "name": "E-Book",
+        "name": "Manual",
         "price": 5.0,
-        "stock": 5,
-        "downloadsize": 200.0,
-        "producttype": "digital"
-    },
-    {
-        "id": "Mouse",
-        "name": "Mouse",
-        "price": 2.0,
         "stock": 2,
-        "weight": 2.0,
-        "producttype": "physical"
-    },
-    {
-        "id": "Digital",
-        "name": "Digital",
-        "price": 3.0,
-        "stock": 3,
-        "downloadsize": 200.0,
-        "producttype": "digital"
+        "downloadsize": 30.0,
+        "producttype": "digital",
+        "supplierid": "S1",
+        "suppliername": "Manual",
+        "contactinfo": "jarrel@gmail.com"
     }
 ]

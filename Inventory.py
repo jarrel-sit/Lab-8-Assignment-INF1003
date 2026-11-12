@@ -9,11 +9,11 @@ class Inventory:
         self.__inventory: list[Product] = []
 
     #Checks if product ID already exists when adding product to inventory, returns boolean value
-    def _exists(self,product_id):
+    def _exists(self,product_id:str):
         return any(item.itemid == product_id for item in self.__inventory)
 
     #Adds Product Object into existing inventory based on boolean value from exists method
-    def add_product(self, product_to_add):
+    def add_product(self, product_to_add:Product):
        if self._exists(product_to_add.itemid):
            print ("Product already exists, not adding the product.")
            return False
@@ -21,7 +21,7 @@ class Inventory:
            self.__inventory.append(product_to_add)
            return True
 
-    def remove_product(self, id_to_remove):
+    def remove_product(self, id_to_remove:str):
         if not self._exists(id_to_remove):
             print("Product does not exist, unable to remove product.")
         else:
@@ -35,7 +35,7 @@ class Inventory:
             print(f"{item}\n")
 
     #Update stock for particular product
-    def update_stock(self,updateid):
+    def update_stock(self,updateid:str):
         for product in self.__inventory:
             if updateid == product.itemid:
                 newqty = input(f"Input the new amount of stock for this product: {product.name} \n")
@@ -48,7 +48,7 @@ class Inventory:
         print("Product Not Found")
 
     #Searches for product by ID
-    def find_product(self,searchid):
+    def find_product(self,searchid:str):
         if len(self.__inventory) == 0:
                 print("Your inventory is empty, unable to search for products.")
                 return

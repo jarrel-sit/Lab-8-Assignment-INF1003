@@ -9,7 +9,7 @@ class CanBeShipped(ABC):
         pass
 
 class Supplier:
-    def __init__(self, supplier_id, name, contact_email):
+    def __init__(self, supplier_id:str, name:str, contact_email:str):
         self.supplier_id = supplier_id
         self.name = name
         self.contact_email = contact_email
@@ -95,9 +95,9 @@ class DigitalProduct(Product):
         return{"id": self.itemid, "name": self.name, "price": self._price, "stock": self.stock, "downloadsize": self.download_size, "producttype": self.producttype, "supplierid":self.suppid, "suppliername": self.suppname, "contactinfo": self.contact}
 
 
-
-# supplier1 = Supplier("S1", "Jarrel", "jarrel@gmail.com")
-# book = PhysicalProduct("Book", "P01", 50.0, 20, supplier1, 20.5, "physical")
-# ebook = DigitalProduct("E-Book", "P02", 15.0, 30, supplier1, 500.57, "digital")
-# print(book.display_information(),"\n")
-# print(ebook.display_information())
+#Test Polymorphism
+supplier1 = Supplier("S1", "Jarrel", "jarrel@gmail.com")
+book = PhysicalProduct("Book", "P01", 50.0, 20, supplier1, 20.5, "physical")
+ebook = DigitalProduct("E-Book", "P02", 15.0, 30, supplier1, 500.57, "digital")
+print(book.get_fulfilment_info(),"\n")
+print(ebook.get_fulfilment_info())
