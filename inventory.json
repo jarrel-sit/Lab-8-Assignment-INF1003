@@ -9,5 +9,27 @@
         "supplierid": "S1",
         "suppliername": "Jarrel",
         "contactinfo": "jarrel@gmail.com"
+    },
+    {
+        "id": "P02",
+        "name": "Mouse",
+        "price": 55.8,
+        "stock": 30,
+        "weight": 30.0,
+        "producttype": "physical",
+        "supplierid": "S1",
+        "suppliername": "Jarrel",
+        "contactinfo": "jarrel@gmail.com"
+    },
+    {
+        "id": "P03",
+        "name": "E-Book",
+        "price": 20.0,
+        "stock": 500,
+        "downloadsize": 200.0,
+        "producttype": "digital",
+        "supplierid": "S1",
+        "suppliername": "Jarrel",
+        "contactinfo": "jarrel@gmail.com"
     }
 ]
